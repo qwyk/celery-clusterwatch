@@ -12,11 +12,11 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     license='MIT License',
-    description='Uploads results of Celery tasks to AWS CloudWatch.',
+    description='Send Celery cluster statistics to AWS CloudWatch',
     long_description=README,
-    url='https://github.com/SectorLabs/celery-cloudwatch',
-    author='Sector Labs',
-    author_email='open-source@sectorlabs.ro',
+    url='https://github.com/qwyk/celery-clusterwatch',
+    author='Qwyk B.V.',
+    author_email='martyn@qywk.io',
     keywords=['celery', 'aws', 'cloudwatch'],
     entry_points={
         'celery.commands': [
