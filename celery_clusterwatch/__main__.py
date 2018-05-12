@@ -22,11 +22,36 @@ class ClusterWatchCommand(Command):
             help='Frequency of the camera'
         )
 
-    def run(self, broker=None, frequency=60, **kwargs):
+        parser.add_argument(
+            '--region',
+            help='AWS CloudWatch Region'
+        )
+
+        parser.add_argument(
+            '--access_key',
+            help='AWS Access Key'
+        )
+
+        parser.add_argument(
+            '--secret_key',
+            help='AWS Secret Key'
+        )
+
+    def run(self, broker=None, frequency=60, region=None, access_key=None, secret_key=None, **kwargs):
         """Invoked when the user runs `celery cloudwatch`."""        
         if broker is None:
             broker = os.getenv('CELERY_BROKER', None)
-        monitor(broker, int(frequency))
+
+        if region is None:
+            raise ValueError('--region')
+        
+        if access_key is None:
+            raise ValueError('--access_key')
+
+        if secret_key is None:
+            raise ValueError('--secret_key')
+
+        monitor(broker, int(frequency), region, access_key, secret_key)
 
 
 # if __name__ == '__main__':
